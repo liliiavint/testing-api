@@ -1,4 +1,25 @@
-import items from itemsShop.json;
+const items = [
+  {
+      id: 1,
+      name: "pomidoras",
+      price: 8
+  },
+  {
+      id: 2,
+      name: "ogurkas",
+      price: 6
+  },
+  {
+      id: 3,
+      name: "kopustas",
+      price: 4
+      },
+  {
+      id: 4,
+      name: "moliugas",
+      price: 10
+      }
+]
 
 
 app.get('/', (req, res) => {
@@ -7,9 +28,31 @@ app.get('/', (req, res) => {
   
 // all list
 app.get('/api/items', (req, res) => {
-  return res.send(JSON.stringify(items));
+  return res.send(JSON.stringify({ items
+    // items: [
+    //   {
+    //       id: 1,
+    //       name: 'pomidoras',
+    //       price: 8
+    //   },
+    //   {
+    //       id: 2,
+    //       name: 'ogurkas',
+    //       price: 6
+    //   },
+    //   {
+    //       id: 3,
+    //       name: 'kopustas',
+    //       price: 4
+    //   },
+    //   {
+    //       id: 4,
+    //       name: 'moliugas',
+    //       price: 10
+    //   }
+    // ]
+  }));
 });
-
 //viens id
 app.get('/api/items/:id', (req, res) => {
   const item = +req.params.id
