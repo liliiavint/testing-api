@@ -1,4 +1,4 @@
-import items from itemsShop.json
+import items from itemsShop.json;
 
 
 app.get('/', (req, res) => {
