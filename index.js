@@ -31,7 +31,7 @@ const items = [
   });
     
   // all list
-  app.get('/api/items', (req, res) => {
+  app.get('/api/items/', (req, res) => {
     console.log('Fetching all items...');
     return res.send(JSON.stringify({items
     }));
@@ -39,11 +39,11 @@ const items = [
   
   //viens id
   app.get('/api/items/:id', (req, res) => {
-    const item = +req.params.id
+    const item = req.params.id
     if(item){
     return res.send(JSON.stringify(
-    items.filter(index => index.id = item)));
-    }else if(!item){
+    items.filter(index => index.name === item, 
+    )))}else if(!item){
     console.log('404');
     return res.send('Item not found')
   }
@@ -67,7 +67,7 @@ const items = [
     
       
       if (!item) {
-        return res.status(404).json({ error: 'Товар не знайдено' });
+        return res.status(404).json({ error: 'Item not found' });
       }
     
       if (name) item.name = name;
