@@ -63,7 +63,7 @@ const items = [
       const itemId = req.params.id;
       const { name, price } = req.body;
     
-      const item = items.find(item => item.id === itemId);
+      const item = items.filter(item => item.id === itemId);
     
       
       if (!item) {
