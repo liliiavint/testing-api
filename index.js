@@ -2,7 +2,7 @@ import express from 'express';
 //id: (Math.floor(Math.random() * 10000) + 1).toString();
 // id: Date.now().toString();
 const app = express();
-const port = 4843;
+const port = 4850;
 let items = [ 
 { 
   id: "122001", 
@@ -92,7 +92,8 @@ app.use(express.json())
     return res.send('Item not found')
   }});
   app.get('/api/shops/:id', (req, res) => {
-    const shop = req.params.id
+    const shop = req.params.id;
+    console.log('Fetching:)', `${shop}` );
     if(shop){
     return res.send(JSON.stringify(
     shops.filter(index => index.id === shop, 
@@ -112,6 +113,7 @@ app.use(express.json())
 
   app.post('/api/shops/', (req, res) => {
   console.log(req.body); 
+  console.log('Fetching new shop :)');
   const { id, name, address, contact, services } = req.body;
   const newShop = { id, name, address, contact, services };
   shops.push(newShop)
