@@ -105,9 +105,10 @@ app.use(express.json())
   //sukurti id
   app.post('/api/items/', (req, res) => {
     console.log(req.body); 
+    console.log('Fetching new item :)');
   const { id, name, description, price, category } = req.body;
-  const newItem = {id, name, description, price, category}
-  shops.push(newItem)
+  const newItem = {id, name, description, price, category};
+  items.push(newItem);
   res.status(201).json(newItem);
   });
 
@@ -116,28 +117,29 @@ app.use(express.json())
   console.log('Fetching new shop :)');
   const { id, name, address, contact, services } = req.body;
   const newShop = { id, name, address, contact, services };
-  shops.push(newShop)
+  shops.push(newShop);
   res.status(201).json(newShop);
   });
   
   //change id
   app.put('/api/items/:id', (req, res) => {
+    console.log('Fetching the changed item')
   const itemId = req.params.id;
   const { name, price } = req.body;
-  const item = items.filter(item => item.id === itemId);
-  if (!item) {
+  const itemIndex = items.findIndex(index => index.id === itemId);
+  if (itemIndex === -1) {
     return res.status(404).json({ error: 'Item not found' });
   }
-  if (name) item.name = name;
-  if (price) item.price = price;
-  res.json(item);
+  if (name) items[itemIndex].name = name;
+  if (price) items[itemIndex].price = price;
+  res.json(items[itemIndex]);
 });
   app.put('/api/shops/:id', (req, res) => {
     console.log('Fetching the changed store')
   const shopId = req.params.id;
   const { address, contact } = req.body;
   
-  const shopIndex = shops.findIndex(shop => shop.id === shopId);
+  const shopIndex = shops.findIndex(index => index.id === shopId);
   if (shopIndex === -1) {
     return res.status(404).json({ error: 'Item not found' });
   }
@@ -148,17 +150,14 @@ res.json(shops[shopIndex]);
   
 //delete id
   app.delete('/api/items/:id', (req, res) => {
-  const itemId = +req.params.id;
+  const itemId = req.params.id;
   items = items.filter(index => index.id !== itemId)
-
- 
   res.status(200).json({ message: 'Item deleted successfully' });
 });
 
   app.delete('/api/shops/:id', (req, res) => {
     const shopId = req.params.id;
     shops = shops.filter(index => index.id !== shopId)
-
     res.status(200).json({ message: 'Shop deleted successfully' });
 });
   
