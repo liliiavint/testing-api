@@ -133,15 +133,17 @@ app.use(express.json())
   res.json(item);
 });
   app.put('/api/shops/:id', (req, res) => {
+    console.log('Fetching the changed store')
   const shopId = req.params.id;
   const { address, contact } = req.body;
-  const shop = shops.filter(index => index.id === shopId);
-  if (!shop) {
+  
+  const shopIndex = shops.findIndex(shop => shop.id === shopId);
+  if (shopIndex === -1) {
     return res.status(404).json({ error: 'Item not found' });
   }
-  if (address) shop.address = address;
-  if (contact) shop.contact = contact;
-  res.json(shop);
+  if (address) shops[shopIndex].address = address;
+  if (contact) shops[shopIndex].contact = contact;
+res.json(shops[shopIndex]);
 });
   
 //delete id
