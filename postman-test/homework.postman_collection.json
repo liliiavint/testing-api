@@ -1,203 +1,312 @@
 {
 	"info": {
-	  "_postman_id": "f4491ef4-516b-4226-8d89-b1d065cecb05",
-	  "name": "homework",
-	  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-	  "_exporter_id": "34520114"
+		"_postman_id": "f4491ef4-516b-4226-8d89-b1d065cecb05",
+		"name": "homework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34520114"
 	},
-	"name": "Postman test with Chai",
 	"item": [
-	  {
-		"name": "test",
-		"event": [
-		  {
-			"listen": "test",
-			"script": {
-			  "exec": [
-				"pm.test(\"GET request returns 200 status code\", () => {\n",
-				"  pm.expect(pm.response.code).to.equal(200);\n",
-				"});\n",
-				"\n",
-				"pm.test(\"GET request returns non-empty response body\", () => {\n",
-				"  pm.expect(pm.response.json()).to.not.be.empty;\n",
-				"});"
-			  ],
-			  "type": "text/javascript",
-			  "packages": {}
-			}
-		  }
-		],
-		"request": {
-		  "method": "GET",
-		  "header": [],
-		  "url": {
-			"raw": "https://jsonplaceholder.typicode.com/posts",
-			"protocol": "https",
-			"host": [
-			  "jsonplaceholder",
-			  "typicode",
-			  "com"
-			],
-			"path": [
-			  "posts"
+		{
+			"name": "Postman test with Chai",
+			"item": [
+				{
+					"name": "test .to.equal(200); .to.not.be.empty;",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET request returns 200 status code\", () => {\r",
+									"  pm.expect(pm.response.code);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"GET request returns non-empty response body\", () => {\r",
+									"  pm.expect(pm.response.json()).to.not.be.empty;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test 201",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"POST request returns code 201 CREATED\", () => {\r",
+									"  pm.expect(pm.response.code).to.equal(201);\r",
+									"});\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"001\",\r\n    \"id\": \"100\",\r\n    \"title\": \"ea molestias quasi exercitationem repellat qui ipsa sit aut\",\r\n    \"body\": \"dont empty\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test 204 jsonplaceholder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"DELETE request returns code 204 \", () => {\r",
+									"    pm.expect(pm.response.code).to.equal(204)\r",
+									"});\r",
+									"pm.test(\"DELETE request returns empty JSON response\", () => {\r",
+									"    pm.expect(pm.response.json()).to.be.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts/1",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test 204 localhost:4850",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"DELETE request returns code 204 \", () => {\r",
+									"    //   pm.expect(pm.response.code).to.equal(200);\r",
+									"//   pm.expect(pm.response.code).to.have.status(204);\r",
+									"  pm.expect(pm.response.code).to.equal(204)\r",
+									"});\r",
+									"// pm.test(\"DELETE request returns empty JSON response\", () => {\r",
+									"//     pm.expect(pm.response.json()).to.be.empty;\r",
+									"// });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}shops/TZ001",
+							"host": [
+								"{{base_url}}shops"
+							],
+							"path": [
+								"TZ001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test .to.not.be.empty; .to.be.at.least(3);",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"PUT request returns object with at least 3 properties\", () => {\r",
+									"\r",
+									"    pm.expect(Object.keys(pm.response.json()).length).to.be.at.least(3);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"PUT request returns object with non-empty Id property\", () => {\r",
+									"    pm.expect(pm.response.json().id).to.not.be.empty;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}shops/TZ001",
+							"host": [
+								"{{base_url}}shops"
+							],
+							"path": [
+								"TZ001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test sending new variable in GLOBAL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"let responseData = pm.response.json();\r",
+									"pm.globals.set(\"userId\", responseData.id)\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": \"PP002\",\r\n\"name\": \"Animal Paradise\",\r\n\"address\": \"Global\",\r\n\"contact\": \"+1234567890\",\r\n\"services\": [\"Pet grooming\", \"Pet food\", \"Pet toys\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}shops/?id= \"PP002\",&name= \"Pet Paradise\",&address= \"123 Main St, Cityville\",&contact= \"+1234567890\",&services= [\"Pet grooming\", \"Pet food\", \"Pet toys\"],",
+							"host": [
+								"{{base_url}}shops"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": " \"PP002\","
+								},
+								{
+									"key": "name",
+									"value": " \"Pet Paradise\","
+								},
+								{
+									"key": "address",
+									"value": " \"123 Main St, Cityville\","
+								},
+								{
+									"key": "contact",
+									"value": " \"+1234567890\","
+								},
+								{
+									"key": "services",
+									"value": " [\"Pet grooming\", \"Pet food\", \"Pet toys\"],"
+								}
+							]
+						}
+					},
+					"response": []
+				}
 			]
-		  }
-		},
-		"response": []
-	  },
-	  {
-		"name": "test 201",
-		"event": [
-		  {
-			"listen": "test",
-			"script": {
-			  "exec": [
-				"pm.test(\"POST request returns code 201 CREATED\", () => {\n",
-				"  pm.expect(pm.response.code).to.equal(201);\n",
-				"});"
-			  ],
-			  "type": "text/javascript",
-			  "packages": {}
-			}
-		  }
-		],
-		"request": {
-		  "method": "POST",
-		  "header": [],
-		  "body": {
-			"mode": "raw",
-			"raw": "{\n  \"userId\": \"001\",\n  \"id\": \"100\",\n  \"title\": \"ea molestias quasi exercitationem repellat qui ipsa sit aut\",\n  \"body\": \"dont empty\"\n}",
-			"options": {
-			  "raw": {
-				"language": "json"
-			  }
-			}
-		  },
-		  "url": {
-			"raw": "https://jsonplaceholder.typicode.com/posts",
-			"protocol": "https",
-			"host": [
-			  "jsonplaceholder",
-			  "typicode",
-			  "com"
-			],
-			"path": [
-			  "posts"
-			]
-		  }
-		},
-		"response": []
-	  },
-	  {
-		"name": "test 204",
-		"event": [
-		  {
-			"listen": "test",
-			"script": {
-			  "exec": [
-				"pm.test(\"DELETE request returns code 200 \", () => {\n",
-				"    pm.expect(pm.response.code).to.equal(200);\n",
-				"});\n",
-				"pm.test(\"DELETE request returns empty JSON response\", () => {\n",
-				"    pm.expect(pm.response.json()).to.be.empty;\n",
-				"});"
-			  ],
-			  "type": "text/javascript",
-			  "packages": {}
-			}
-		  }
-		],
-		"request": {
-		  "method": "DELETE",
-		  "header": [],
-		  "url": {
-			"raw": "https://jsonplaceholder.typicode.com/posts/1",
-			"protocol": "https",
-			"host": [
-			  "jsonplaceholder",
-			  "typicode",
-			  "com"
-			],
-			"path": [
-			  "posts",
-			  "1"
-			]
-		  }
-		},
-		"response": []
-	  },
-	  {
-		"name": "test",
-		"event": [
-		  {
-			"listen": "test",
-			"script": {
-			  "exec": [
-				"pm.test(\"PUT request returns object with at least 3 properties\", () => {\n",
-				"\n",
-				"  pm.expect(Object.keys(pm.response.json()).length).to.be.at.least(3);\n",
-				"});\n",
-				"\n",
-				"pm.test(\"PUT request returns object with non-empty Id property\", () => {\n",
-				"  pm.expect(pm.response.json().id).to.not.be.empty;\n",
-				"});"
-			  ],
-			  "type": "text/javascript",
-			  "packages": {}
-			}
-		  }
-		],
-		"request": {
-		  "method": "PUT",
-		  "header": [],
-		  "url": {
-			"raw": "http://localhost:4850/api/shops/TZ001",
-			"protocol": "http",
-			"host": [
-			  "localhost"
-			],
-			"port": "4850",
-			"path": [
-			  "api",
-			  "shops",
-			  "TZ001"
-			]
-		  }
-		},
-		"response": []
-	  },
-	  {
-		"name": "New Request",
-		"request": {
-		  "method": "GET",
-		  "header": []
-		},
-		"response": []
-	  }
+		}
 	],
 	"event": [
-	  {
-		"listen": "prerequest",
-		"script": {
-		  "type": "text/javascript",
-		  "packages": {},
-		  "exec": []
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
-	  },
-	  {
-		"listen": "test",
-		"script": {
-		  "type": "text/javascript",
-		  "packages": {},
-		  "exec": []
-		}
-	  }
 	],
 	"variable": [
-	  {
-		"key": "base_url",
-		"value": "http://localhost:4850/api/",
-		"type": "string"
-	  }
+		{
+			"key": "base_url",
+			"value": "http://localhost:4850/api/",
+			"type": "string"
+		}
 	]
-  }
+}

@@ -73,11 +73,9 @@ app.use(express.json())
     
   // all list
   app.get('/api/items/', (req, res) => {
-    console.log('Fetching all items...');
     return res.send(JSON.stringify({items}));
   });
   app.get('/api/shops/', (req, res) => {
-    console.log('Fetching all shops...');
     return res.send(JSON.stringify({shops}));
   });
 
