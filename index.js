@@ -93,7 +93,6 @@ app.use(express.json())
   }});
   app.get('/api/shops/:id', (req, res) => {
     const shop = req.params.id;
-    console.log('Fetching:)', `${shop}` );
     if(shop){
     return res.send(JSON.stringify(
     shops.filter(index => index.id === shop, 
@@ -105,7 +104,6 @@ app.use(express.json())
   //sukurti id
   app.post('/api/items/', (req, res) => {
     console.log(req.body); 
-    console.log('Fetching new item :)');
   const { id, name, description, price, category } = req.body;
   const newItem = {id, name, description, price, category};
   items.push(newItem);
@@ -114,7 +112,6 @@ app.use(express.json())
 
   app.post('/api/shops/', (req, res) => {
   console.log(req.body); 
-  console.log('Fetching new shop :)');
   const { id, name, address, contact, services } = req.body;
   const newShop = { id, name, address, contact, services };
   shops.push(newShop);
@@ -123,7 +120,7 @@ app.use(express.json())
   
   //change id
   app.put('/api/items/:id', (req, res) => {
-    console.log('Fetching the changed item')
+   
   const itemId = req.params.id;
   const { name, price } = req.body;
   const itemIndex = items.findIndex(index => index.id === itemId);
@@ -135,7 +132,6 @@ app.use(express.json())
   res.json(items[itemIndex]);
 });
   app.put('/api/shops/:id', (req, res) => {
-    console.log('Fetching the changed store')
   const shopId = req.params.id;
   const { address, contact } = req.body;
   
@@ -152,13 +148,13 @@ res.json(shops[shopIndex]);
   app.delete('/api/items/:id', (req, res) => {
   const itemId = req.params.id;
   items = items.filter(index => index.id !== itemId)
-  res.status(200).json({ message: 'Item deleted successfully' });
+  res.status(204).json({ message: 'Item deleted successfully' });
 });
 
   app.delete('/api/shops/:id', (req, res) => {
     const shopId = req.params.id;
     shops = shops.filter(index => index.id !== shopId)
-    res.status(200).json({ message: 'Shop deleted successfully' });
+    res.status(204).json({ message: 'Shop deleted successfully' });
 });
   
     app.get('*', (req, res) => {
