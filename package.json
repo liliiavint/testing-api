@@ -6,14 +6,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run" : "node index.js",
+    "test": "newman run ./postman-test/homework.postman_collection.json -r htmlextra"
   },
   "author": "Lilia (https://github.com/liliiavint)",
   "license": "ISC",
   "dependencies": {
+    "chai": "^5.1.0",
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "dead-server": "^1.0.9"
+    "dead-server": "^1.0.9",
+    "jest": "^29.7.0"
   }
 }
